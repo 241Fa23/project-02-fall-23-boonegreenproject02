@@ -33,8 +33,12 @@ public class Project02StartingFiles {
         choice = input.next().toLowerCase();
 
         while (!choice.equals("q")) {
-            if (choice.equals("n") || choice.equals("s") || choice.equals("e") || choice.equals("w")) {
+            if (choice.equals("?")) {
+                statusReport();
+            } else if (choice.equals("n") || choice.equals("s") || choice.equals("e") || choice.equals("w")) {
                 move();
+            } else {
+                System.out.println("You can't do that traveller... Try again!");
             }
             menu();
             choice = input.next();
@@ -116,14 +120,17 @@ public class Project02StartingFiles {
             fighting = battle.next();
             System.out.println("***********************************");
             //call up special move of character class to use
-            //if they win the battle, increase score by 2
+            //player has 60% chance to win battle
+            //if they lose the battle, player health -= 1
+            //if they win the battle, player score += 2
         } else if (choice.equals("r")) {
             success = run.nextInt(2);
             if (success == 0) {
                 System.out.println("During your escape you were hit!\nYou took 1 dmg!");
                 //player health -= 1
             } else {
-                System.out.println("You got away safely!");
+                System.out.println("You got away safely! \nYouv'e gained 1 point!");
+                //player score += 1
             }
         }
     }
