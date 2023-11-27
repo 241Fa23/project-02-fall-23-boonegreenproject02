@@ -8,6 +8,15 @@ package project02startingfiles;
  *
  * @author S540473
  */
-public class Healer {
-    
+public class Healer extends Player {
+
+    @Override
+    public String getSpecialMove() {
+        return "Use Sleeping Powder";
+    }
+
+    @Override
+    public void useSpecialMove() {
+
+    }
 }

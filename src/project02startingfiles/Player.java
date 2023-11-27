@@ -6,17 +6,20 @@ package project02startingfiles;
 
 /**
  *
- * @author S540473
+ * @author s543427
  */
-public class Knight extends Player {
+public abstract class Player {
 
-    @Override
-    public String getSpecialMove() {
-        return "Slash with your Sword";
+    private int health;
+    private int score;
+
+    Player() {
+        this.health = 10;
+        this.score = 0;
+
     }
 
-    @Override
-    public void useSpecialMove() {
+    public abstract String getSpecialMove();
 
-    }
+    public abstract void useSpecialMove();
 }

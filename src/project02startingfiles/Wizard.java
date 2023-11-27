@@ -8,6 +8,15 @@ package project02startingfiles;
  *
  * @author S540473
  */
-public class Wizard {
-    
+public class Wizard extends Player {
+
+    @Override
+    public String getSpecialMove() {
+        return "Cast a Spell";
+    }
+
+    @Override
+    public void useSpecialMove() {
+
+    }
 }
