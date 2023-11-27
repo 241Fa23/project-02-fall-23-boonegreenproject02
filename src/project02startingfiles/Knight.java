@@ -11,12 +11,12 @@ package project02startingfiles;
 public class Knight extends Player {
 
     @Override
-    public String getSpecialMove() {
-        return "Slash with your Sword";
+    public String getSpecialMove(){
+        return "Slash with Sword";
     }
-
+    
     @Override
-    public void useSpecialMove() {
-
+    public void useSpecialMove(){
+        System.out.println("The Knight slashes with sword1");
     }
 }

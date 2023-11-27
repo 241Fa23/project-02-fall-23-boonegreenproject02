@@ -11,12 +11,12 @@ package project02startingfiles;
 public class Wizard extends Player {
 
     @Override
-    public String getSpecialMove() {
+    public String getSpecialMove(){
         return "Cast a Spell";
     }
-
+    
     @Override
-    public void useSpecialMove() {
-
+    public void useSpecialMove(){
+        System.out.println("The Wizard casts a spell!");
     }
 }

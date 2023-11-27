@@ -9,14 +9,15 @@ package project02startingfiles;
  * @author S540473
  */
 public class Healer extends Player {
-
     @Override
-    public String getSpecialMove() {
+    public String getSpecialMove(){
         return "Use Sleeping Powder";
     }
-
+    
     @Override
-    public void useSpecialMove() {
-
+    public void useSpecialMove(){
+        System.out.println("The Healer uses sleeping powder!");
     }
+
+    
 }

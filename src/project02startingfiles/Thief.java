@@ -11,12 +11,12 @@ package project02startingfiles;
 public class Thief extends Player {
 
     @Override
-    public String getSpecialMove() {
+    public String getSpecialMove(){
         return "Sneak By";
     }
-
+    
     @Override
-    public void useSpecialMove() {
-
+    public void useSpecialMove(){
+        System.out.println("The Thief sneaks by!");
     }
 }
