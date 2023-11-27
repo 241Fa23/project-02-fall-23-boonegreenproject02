@@ -121,8 +121,8 @@ public class Project02StartingFiles {
             System.out.println("***********************************");
             //call up special move of character class to use
             //player has 60% chance to win battle
-            //if they lose the battle, player health -= 1
-            //if they win the battle, player score += 2
+            //if they lose the battle, player health -= 1 //I created method decreaseScore
+            //if they win the battle, player score += 2 //I created increaseScore
         } else if (choice.equals("r")) {
             success = run.nextInt(2);
             if (success == 0) {

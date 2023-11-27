@@ -31,11 +31,11 @@ public abstract class Player {
     }
     
     public void decreaseHealth(){
-        health--;
+        health-= 1;
     }
     
     public void increaseScore(){
-        score++;
+        score+= 2;
     }
     
     //add to String (don't know if need)
