@@ -169,8 +169,7 @@ public class Project02StartingFiles {
             //player has 60% chance to win battle
             //if they lose the battle, player health -= 1 //I created method decreaseHealth
             //if they win the battle, player score += 2 //I created increaseScore method
-
-            player.getSpecialMove();
+            player.useSpecialMove();
             fighting = fight.nextInt(5);
             //selection structure to determine whether the player wins or the enemy
             if (fighting == 0 || fighting == 1 || fighting == 2) {
