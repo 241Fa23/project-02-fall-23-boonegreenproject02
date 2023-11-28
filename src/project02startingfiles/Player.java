@@ -38,5 +38,7 @@ public abstract class Player {
         score+= 2;
     }
     
-    //add to String (don't know if need)
+    public String toString(){
+        return "Health: " + this.health + "\nScore: " + this.score;
+    }
 }

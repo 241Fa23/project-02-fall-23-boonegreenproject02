@@ -19,4 +19,9 @@ public class Wizard extends Player {
     public void useSpecialMove(){
         System.out.println("The Wizard casts a spell!");
     }
+    
+    @Override
+    public String toString(){
+        return "Wizard Status: \n" + super.toString() +"\nThe Wizard's special move is 'Cast Spell'";
+    }
 }

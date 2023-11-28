@@ -17,53 +17,89 @@ public class Project02StartingFiles {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //setting up variables and scanners
         Scanner inputClass = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
-        String userClass;
+        String user;
         String choice;
+        Player player = null;
 
+        //beginning menu
         System.out.println("Welcome to JavaQuest!");
         System.out.println("Stay alive and increase your score!");
         System.out.println("Choose a character...");
         System.out.println("{k}Knight || {h} Healer || {w}Wizard || {t}Thief");
-        userClass = inputClass.next().toLowerCase();
-        //set the players class to what they asked for
+        user = inputClass.next().toLowerCase();
+        //loop for if they dont choose form the available classes
+        while (!user.equals("k") && !user.equals("h") && !user.equals("w") && !user.equals("t")) {
+            System.out.println("Invalid choice... Choose your class adventurer.");
+            System.out.println("{k}Knight || {h} Healer || {w}Wizard || {t}Thief");
+            user = inputClass.next().toLowerCase();
+        }
+        //sets player to the class that was chosen
+        if (user.equals("k")) {
+            player = new Knight();
+            user = "Knight";
+        } else if (user.equals("h")) {
+            player = new Healer();
+            user = "Healer";
+        } else if (user.equals("w")) {
+            player = new Wizard();
+            user = "Wizard";
+        } else if (user.equals("t")) {
+            player = new Thief();
+            user = "Thief";
+        }
 
+        //priming read of sentinel loop
+        System.out.println("Get ready for your adventure as a " + user + "!!!");
         menu();
         choice = input.next().toLowerCase();
 
+        //sentinel loop for game
         while (!choice.equals("q")) {
-            if (choice.equals("?")) {
-                statusReport();
-            } else if (choice.equals("n") || choice.equals("s") || choice.equals("e") || choice.equals("w")) {
-                move();
+            if (choice.equals("n") || choice.equals("s") || choice.equals("e") || choice.equals("w")) {
+                //if they chose to move, goes through the move() method
+                move(player);
+            } else if (choice.equals("?")) {
+                //if they chose status report, give them a status report of their character
+                statusReport(player);
             } else {
-                System.out.println("You can't do that traveller... Try again!");
+                //if they didnt chose one of the available menu options
+                System.out.println("Invalid choice adventurer...Try again...");
             }
             menu();
             choice = input.next();
         }
+        //prints out the ending screen with the final status report of the character
         System.out.println("*************************\n*************************");
         System.out.println("The game has come to an end! Your final stats were:\n");
-        //print out character status
+        statusReport(player);
+        System.out.println("Thanks for playing!");
     }
 
     public static void menu() {
+        //prints out the menu
         System.out.println("\nWhat would you like to do?");
         System.out.println("{?}Status Report || {n}{s}{e}{w} Move 1 Space North, South, East, or West || {q} Quit");
     }
 
-    public static void statusReport() {
-
+    public static void statusReport(Player player) {
+        //prints out the stats of the player
+        System.out.println(player);
     }
 
-    public static void move() {
+    public static void move(Player player) {
+        //initialize variables
         Random rand = new Random();
         int scene;
         int move = rand.nextInt(5);
+        //selection structure for if the player gets into a fight or continues moving
         if (move == 0) {
-            fight();
+            //the player gets into a fight and goes through the fight() method
+            fight(player);
         } else {
+            //the player sees one of 4 scenes in front of them
             scene = rand.nextInt(4);
             switch (scene) {
                 case 0:
@@ -82,10 +118,12 @@ public class Project02StartingFiles {
         }
     }
 
-    public static void fight() {
+    public static void fight(Player player) {
+        //create new random
         Random rand = new Random();
         int fight = rand.nextInt(3);
         String enemy = "";
+        //determines which enemy the player is fighting
         switch (fight) {
             case 0:
                 enemy = "zombie";
@@ -100,37 +138,58 @@ public class Project02StartingFiles {
                 break;
         }
         System.out.println("Oh no! You're being attacked by a " + enemy + "!");
-        fightMenu();
+        //moves onto the actual fighting by going into the fightMenu() method
+        fightMenu(player, enemy);
 
     }
 
-    public static void fightMenu() {
+    public static void fightMenu(Player player, String enemy) {
+        //creating variables
         Scanner input = new Scanner(System.in);
         Scanner battle = new Scanner(System.in);
         String choice;
         Random run = new Random();
+        Random fight = new Random();
         int success;
-        String fighting;
+        int fighting;
+        String fightStart;
+
+        //asking if the player wants to fight or run
         System.out.println("How would you like to handle this?");
         System.out.println("{s}Special Move || {r}Run!");
         choice = input.next().toLowerCase();
+        //if the player chooses to fight using their classes special move
         if (choice.equals("s")) {
             System.out.println("Prepare for battle!");
             System.out.println("Press any key then ENTER to continue");
-            fighting = battle.next();
+            fightStart = battle.next();
             System.out.println("***********************************");
+
             //call up special move of character class to use
             //player has 60% chance to win battle
             //if they lose the battle, player health -= 1 //I created method decreaseHealth
             //if they win the battle, player score += 2 //I created increaseScore method
+
+            player.getSpecialMove();
+            fighting = fight.nextInt(5);
+            //selection structure to determine whether the player wins or the enemy
+            if (fighting == 0 || fighting == 1 || fighting == 2) {
+                System.out.println("Player wins! Increasing score by 2 points!");
+                player.increaseScore();
+            } else {
+                System.out.println("The " + enemy + " wins...");
+                System.out.println("You've taken 1 dmg...");
+                player.decreaseHealth();
+            }
+            //if the player chooses to run from the fight
+
         } else if (choice.equals("r")) {
             success = run.nextInt(2);
             if (success == 0) {
                 System.out.println("During your escape you were hit!\nYou took 1 dmg!");
-                //player health -= 1
+                player.decreaseHealth();
             } else {
-                System.out.println("You got away safely! \nYouv'e gained 1 point!");
-                //player score += 1
+                System.out.println("You got away safely!");
             }
         }
     }

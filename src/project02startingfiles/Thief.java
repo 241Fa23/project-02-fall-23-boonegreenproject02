@@ -19,4 +19,9 @@ public class Thief extends Player {
     public void useSpecialMove(){
         System.out.println("The Thief sneaks by!");
     }
+    
+    @Override
+    public String toString(){
+        return "Thief Status: \n" + super.toString() +"\nThe Thief's special move is 'Sneak By'";
+    }
 }
